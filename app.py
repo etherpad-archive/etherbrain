@@ -44,7 +44,9 @@ def moz_pad(path):
 
 @app.route('/')
 def index():
-    return Response("Hello I am the etherpad brain")
+    return Response("Hello I am the etherpad brain."
+                    " To archive https://public.etherpad-mozilla.org/p/<XXX> visit"
+                    " https://etherbrain.herokuapp.com/moz/<XXX>/")
 
 
 if __name__ == "__main__":
