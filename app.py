@@ -26,7 +26,9 @@ def moz_pad(path):
     r = gh.repository('etherpad-archive', 'etherpad-archive.github.io')
     contents = r.contents(path='moz')
 
-    if contents is None or path not in contents:
+    print(contents)
+    fname = path + ".md"
+    if contents is None or fname not in contents:
         # create it for the first time
         r.create_file("moz/{}.md".format(path),
                       'etherpad from {}'.format(ether_path),
@@ -34,9 +36,9 @@ def moz_pad(path):
 
     else:
         # update the file
-        return Response(
-            "Check out: http://etherpad-archive.github.io/moz/{}.md".format(path)
-        )
+        f = contents[fname]
+        f.update('updated etherpad from {}'.format(ether_path),
+                 content=req.content)
     
     return Response(
         "Check out: http://etherpad-archive.github.io/moz/{}.md".format(path)
