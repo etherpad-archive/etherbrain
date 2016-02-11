@@ -11,7 +11,7 @@ from flask import (
 )
 
 GH_TOKEN = os.getenv("TOKEN")
-
+FORK_ME = """<a href="https://github.com/you"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/365986a132ccd6a44c23a9169022c0b5c890c387/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f7265645f6161303030302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"></a>"""
 
 app = Flask(__name__)
 app.debug = True
@@ -41,14 +41,15 @@ def moz_pad(path):
                  content=req.content)
     
     return Response(
-        "Check out: http://etherpad-archive.github.io/moz/{}.md".format(path)
+        'Check out: <a href="http://etherpad-archive.github.io/moz/{path}.md"'
+        '>http://etherpad-archive.github.io/moz/{path}.md</a>'.format(path=path)
     )
 
 @app.route('/')
 def index():
     return Response("<html><head><title>Etherpad brain</title></head><body><h1>Hello I am the etherpad brain</h1>"
                     "<p>To archive https://public.etherpad-mozilla.org/p/XXX visit"
-                    " https://etherbrain.herokuapp.com/moz/XXX/</p></body></html>")
+                    " https://etherbrain.herokuapp.com/moz/XXX/</p>{}</body></html>".format(FORK_ME))
 
 
 if __name__ == "__main__":
