@@ -28,7 +28,7 @@ def moz_pad(path):
 
     if contents is None or path not in contents:
         # create it for the first time
-        r.create_file("moz/" + path,
+        r.create_file("moz/{}.md".format(path),
                       'etherpad from {}'.format(ether_path),
                       content=req.content)
 
