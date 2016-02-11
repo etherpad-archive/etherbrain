@@ -35,11 +35,11 @@ def moz_pad(path):
     else:
         # update the file
         return Response(
-            "Check out: http://etherpad-archive.github.io/moz/{}".format(path)
+            "Check out: http://etherpad-archive.github.io/moz/{}.md".format(path)
         )
     
     return Response(
-        "Check out: http://etherpad-archive.github.io/moz/{}".format(path)
+        "Check out: http://etherpad-archive.github.io/moz/{}.md".format(path)
     )
 
 @app.route('/')
